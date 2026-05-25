@@ -22,9 +22,13 @@ public class Menu {
             System.out.println("4. Mostrar por marca");
             System.out.println("5. Salir");
             System.out.print("Ingrese su opcion: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
-
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Opcion no valida, ingrese un numero.");
+                continue;
+            }
+            
             switch (opcion) {
                 case 1:
                     registrarVehiculo();
@@ -73,8 +77,14 @@ public class Menu {
         }
 
         System.out.print("Ingrese el año:");
-        int anio = scanner.nextInt();
-        scanner.nextLine(); 
+        int anio = 0;
+        try {
+            anio = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Debe ingresar un numero entero para el año.");
+            return;
+        }
+        
         if (anio < 1886 || anio > 2026){
             System.out.println("Año no valido, debe estar entre 1886 y 2026");
             return;
@@ -88,8 +98,14 @@ public class Menu {
         }
 
         System.out.print("Ingrese el precio:");
-        double precio = scanner.nextDouble();
-        scanner.nextLine();
+        double precio = 0;
+        try {
+            precio = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Debe ingresar un valor numerico valido para el precio (use punto para decimales).");
+            return;
+        }
+        
         if (precio < 0){
             System.out.println("El precio no puede ser negativo");
             return;
